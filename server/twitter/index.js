@@ -4,7 +4,7 @@ const router = require('express').Router();
 
 router.get('/', async (req, res, next) => {
   try {
-    const lines = Line.findAll();
+    const lines = await Line.findAll();
     console.log(lines);
   } catch (err) {
     next(err);
