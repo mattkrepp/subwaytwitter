@@ -2,9 +2,6 @@
   "name": "sentiment",
   "version": "1.0.0",
   "description": "Backend of Sentiment",
-  "engines": {
-    "node": ">= 7.0.0"
-  },
   "main": "index.js",
   "scripts": {
     "build-client": "webpack",
