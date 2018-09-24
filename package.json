@@ -12,7 +12,7 @@
     "precommit": "# lint-staged # un-comment to enable",
     "prepare": "if [ -d .git ]; then npm-merge-driver install; fi",
     "prettify": "prettier --write \"**/*.{js,jsx,json,css,scss,md}\"",
-    "postinstall": "webpack -p --config ./webpack.prod.config.js --progress",
+    "postinstall": "touch secrets.js",
     "seed": "node script/seed.js",
     "start": "node server",
     "start-dev": "NODE_ENV='development' npm run build-client-watch & npm run start-server",
