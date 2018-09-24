@@ -2,7 +2,7 @@ const Line = require('../db/models/line');
 const axios = require('axios');
 const router = require('express').Router();
 
-router.get('/', async (req, res, next) => {
+router.use(async (req, res, next) => {
   try {
     const lines = await Line.findAll();
     console.log(lines);
