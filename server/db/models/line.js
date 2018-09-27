@@ -7,13 +7,19 @@ const Line = db.define('line', {
     unique: true,
     allowNull: false
   },
-  lastHour: {
+  last15: {
     type: Sequelize.INTEGER,
     validate: {
       min: 0
     }
   },
   last30: {
+    type: Sequelize.INTEGER,
+    validate: {
+      min: 0
+    }
+  },
+  lastHour: {
     type: Sequelize.INTEGER,
     validate: {
       min: 0

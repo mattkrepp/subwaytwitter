@@ -24,5 +24,5 @@ NYCT.belongsToMany(Line, {through: 'officaltweets'});
 module.exports = {
   User,
   Line,
-  NYCT
+  NYCT,
 };
