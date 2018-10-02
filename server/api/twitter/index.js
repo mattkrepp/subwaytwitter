@@ -39,7 +39,7 @@ async function fetchTwitter(lines) {
     await client.get(
       'search/tweets',
       {
-        q: `"${line.name} train" to:nyctsubway`,
+        q: `"${line.name} train" to:nyctsubway OR "${line.name} train" #CuomosMTA OR ${line.name}`,
         result_type: 'recent',
         count: '100'
       },
@@ -50,7 +50,6 @@ async function fetchTwitter(lines) {
           for (const tweet of tweets.statuses) {
             const currentTime = new Date();
             const createdAt = new Date(tweet.created_at);
-
             const timeSinceTweet = Math.abs(createdAt - currentTime);
       
             if (timeSinceTweet < fifteenMins) fifteenCounter++;
@@ -94,8 +93,3 @@ async function getToken() {
   }
 }
 module.exports = router;
-
-// --header 'authorization: OAuth oauth_consumer_key="consumer-key-for-app",
-// oauth_nonce="generated-nonce", oauth_signature="generated-signature",
-// oauth_signature_method="HMAC-SHA1", oauth_timestamp="generated-timestamp",
-// oauth_token="access-token-for-authed-user", oauth_version="1.0"'
