@@ -24,7 +24,35 @@ const Line = db.define('line', {
     validate: {
       min: 0
     }
-  }
+  },
+  average15: {
+    type: Sequelize.INTEGER,
+    defaultValue: 0,
+    validate: {
+      min: 0
+    }
+  },
+  average30: {
+    type: Sequelize.INTEGER,
+    defaultValue: 0,
+    validate: {
+      min: 0
+    }
+  },
+  averageHour: {
+    type: Sequelize.INTEGER,
+    defaultValue: 0,
+    validate: {
+      min: 0
+    }
+  },
+  nForAvg: {
+    type: Sequelize.INTEGER,
+    defaultValue: 1,
+    validate: {
+      min: 1
+    }
+  },
 });
 
 module.exports = Line;

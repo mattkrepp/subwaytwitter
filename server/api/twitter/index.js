@@ -57,10 +57,21 @@ async function fetchTwitter(lines) {
             if (timeSinceTweet < oneHour) hourCounter++;
           }
 
+          //code below calculates new average values
+          const n = line.nForAvg;
+          const new15Avg = ((line.average15 * n) + fifteenCounter) / (n + 1);
+          const new30Avg = ((line.average30 * n) + thirtyCounter) / (n + 1);
+          const newHourAvg = ((line.averageHour * n) + hourCounter) / (n + 1);
+
+
           await line.update({
             last15: fifteenCounter,
             last30: thirtyCounter,
-            lastHour: hourCounter
+            lastHour: hourCounter,
+            average15: new15Avg,
+            average30: new30Avg,
+            averageHour: newHourAvg,
+            nForAvg: (n + 1)
           });
         }
       }

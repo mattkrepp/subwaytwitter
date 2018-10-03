@@ -19,8 +19,18 @@ module.exports = {
       {
         test: /\.jsx?$/,
         exclude: /node_modules/,
-        loader: 'babel-loader'
+        loader: 'babel-loader',
+      },
+      {
+        test: /\.(png|jpg|gif)$/,
+        use: [{
+          loader: 'url-loader',
+          options: { 
+              limit: 10000, // Convert images < 8kb to base64 strings
+              name: 'images/[hash]-[name].[ext]'
+          } 
+      }]
       }
     ]
   }
-}
+};
