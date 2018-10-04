@@ -16,6 +16,7 @@ class SetRoute extends Component {
       days: ['M', 'Tu', 'W', 'Th', 'Fr']
     };
     this.handleSameLine = this.handleSameLine.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   async componentDidMount (){
@@ -26,6 +27,10 @@ class SetRoute extends Component {
   handleSameLine(event, { value }) {
     this.setState({sameLine: value});
     console.log(this.state.value);
+  }
+
+  handleSubmit(event, { value }) {
+
   }
   render() {
     let lineNames = [];
