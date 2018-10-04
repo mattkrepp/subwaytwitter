@@ -29,7 +29,6 @@ class SetRoute extends Component {
   }
   render() {
     let lineNames = [];
-    console.log(this.props.status)
     if(this.props.status[0]) {
       this.props.status.forEach(line => lineNames.push({key: line.name, text: line.name, value: line.name}));
       return (
@@ -59,3 +58,4 @@ const mapDispatch = dispatch => ({
 
 export default connect(mapState, mapDispatch)(SetRoute);
 // options={lineNames}
+//eyyyy
