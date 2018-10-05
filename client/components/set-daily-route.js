@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {Form} from 'semantic-ui-react';
 import {connect} from 'react-redux';
 import {getStatuses} from '../store';
+import axios from 'axios';
 
 
 class SetRoute extends Component {
@@ -29,9 +30,18 @@ class SetRoute extends Component {
     console.log(this.state.value);
   }
 
-  handleSubmit(event, { value }) {
+  async handleSubmit(event) {
+    event.preventDefault();
+    await axios.put(`/api/user/:userId`, {
+      lineTo: this.state.lineTo,
+      lineFrom: this.state.lineFrom,
+      timeTo: this.state.timeTo,
+      timeFrom: this.state.timeFrom,
+      days: this.state.days
+    });
 
   }
+
   render() {
     let lineNames = [];
     if(this.props.status[0]) {
@@ -62,5 +72,3 @@ const mapDispatch = dispatch => ({
 });
 
 export default connect(mapState, mapDispatch)(SetRoute);
-// options={lineNames}
-//eyyyy
