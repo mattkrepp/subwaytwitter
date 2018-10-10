@@ -47,15 +47,16 @@ class SetRoute extends Component {
     if(this.props.status[0]) {
       this.props.status.forEach(line => lineNames.push({key: line.name, text: line.name, value: line.name}));
       return (
-        <Form>
+        <Form onSubmit={this.handleSubmit}>
+          <Form.Group widths='equal'>
+            <Form.Radio label='I take the same line to and from work' value={true} checked={this.state.sameLine}  onChange={this.handleSameLine} />
+            <Form.Radio label='I take different lines to and from work' value={false} checked={!this.state.sameLine} onChange={this.handleSameLine} />
+          </Form.Group>
           <Form.Group widths='equal'>
             <Form.Select fluid label='Line to Work' options={lineNames} placeholder='Line to Work'/>
-            <Form.Group widths='equal'>
-              <Form.Radio label='I take the same line to and from work' value={true} checked={this.state.sameLine}  onChange={this.handleSameLine} />
-              <Form.Radio label='I take different lines to and from work' value={false} checked={!this.state.sameLine} onChange={this.handleSameLine} />
-            </Form.Group>
             {!this.state.sameLine ? <Form.Select fluid label='Line from Work' options={lineNames} placeholder='Line from Work'/> : <div /> }
           </Form.Group>
+          <Form.Button>Submit</Form.Button>
         </Form>
       );
     } else {
