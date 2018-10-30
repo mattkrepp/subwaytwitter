@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Form, Grid} from 'semantic-ui-react';
+import {Form, Grid, Button} from 'semantic-ui-react';
 import {connect} from 'react-redux';
 import {getStatuses} from '../store';
 import axios from 'axios';
@@ -13,7 +13,8 @@ class SetRoute extends Component {
       sameLine: true,
       timeTo: null,
       timeFrom: null,
-      days: ['M', 'Tu', 'W', 'Th', 'Fr']
+      days: {su: false, mo: true, tu: true, we: true, th: true, fr: true, sa: false },
+
     };
     this.handleSameLine = this.handleSameLine.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -46,20 +47,24 @@ class SetRoute extends Component {
     this.setState({lineFrom: lineName});
   }
 
-  handleTimeTo(event) {
-    console.log("event", event)
-    this.setState({timeTo: event.target.innerText});
-    console.log("this.state", this.state);
+  handleTimeTo(value) {
+    this.setState({timeTo: value});
+    // console.log("this.state", this.state);
   }
 
-  handleTimeFrom(event) {
-    this.setState({timeFrom: event.target.innerText});
-    console.log("this.state", this.state);
+  handleTimeFrom(value) {
+    this.setState({timeFrom: value});
+    // console.log("this.state", this.state);
   }
 
   async handleSubmit(event) {
     console.log('this.state', this.state);
     event.preventDefault();
+    const daysArr = [];
+    for(const day in this.state.days){
+      if(this.state.days[day]) daysArr.push(day);
+    }
+    console.log("daysArr", daysArr);
     await axios.put(`/api/users/`, {
       lineTo: this.state.lineTo,
       lineFrom: this.state.lineFrom,
@@ -155,6 +160,16 @@ class SetRoute extends Component {
                   placeholder="Evening Commute Time"
                   onChange={(event, {value}) => this.handleTimeFrom(value)}
                 />
+              </Form.Group>
+              <h5>Days Traveled</h5>
+              <Form.Group>
+                <Button type="button" circular active={this.state.days.mo} color={this.state.days.mo ? 'blue' : null} onClick={() => this.setState({days: {...this.state.days, mo: !this.state.days.mo}})}>Mo</Button>
+                <Button type="button" circular active ={this.state.days.tu} color={this.state.days.tu ? 'blue' : null} onClick={() => this.setState({days: {...this.state.days, tu: !this.state.days.tu}})}>Tu</Button>
+                <Button type="button" circular active ={this.state.days.we} color={this.state.days.we ? 'blue' : null} onClick={() => this.setState({days: {...this.state.days, we: !this.state.days.we}})}>We</Button>
+                <Button type="button" circular active ={this.state.days.th} color={this.state.days.th ? 'blue' : null} onClick={() => this.setState({days: {...this.state.days, th: !this.state.days.th}})}>Th</Button>
+                <Button type="button" circular active ={this.state.days.fr} color={this.state.days.fr ? 'blue' : null} onClick={() => this.setState({days: {...this.state.days, fr: !this.state.days.fr}})}>Fr</Button>
+                <Button type="button" circular active ={this.state.days.sa} color={this.state.days.sa ? 'blue' : null} onClick={() => this.setState({days: {...this.state.days, sa: !this.state.days.sa}})}>Sa</Button>
+                <Button type="button" circular active ={this.state.days.su} color={this.state.days.su ? 'blue' : null} onClick={() => this.setState({days: {...this.state.days, su: !this.state.days.su}})}>Su</Button>
               </Form.Group>
               <Form.Button>Submit</Form.Button>
             </Form>

@@ -19,7 +19,7 @@ class Status extends Component {
 
       return(
         <div>
-        <h1>Current Activity</h1> 
+        <h1>All Lines</h1> 
           <Table basic='very' celled collapsing>
             <Table.Header>
               <Table.Row>
